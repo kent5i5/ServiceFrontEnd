@@ -3,11 +3,10 @@ import './App.css';
 import ReactLogin from './ReactLogin';
 import React, { Component, ReactDOM} from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import Home from './Home';
 var parser = require('mongo-parse');
 
 
-class App extends Component {
+class Home extends Component {
   state = {
     isLoading: true,
     groups: [],
@@ -54,24 +53,18 @@ class App extends Component {
 		);
     return (
       <div className="App">
-        {/* <header className="App-header">
-          
+        <header className="App-header">
+          {/* <img src={""} className="App-logo" alt="logo" /> */}
           <div className="App-intro">
-            
+            <h2>User List</h2>
            { <h3> {employers}</h3> }
           
           </div>
+          <Link  to="/user">Login</Link>
 
          
-        </header> */}
-        
-        
-        <Router>
-        <Switch>
-          <Route path='/' exact={true} component={Home}/>
-          <Route path='/user' exact={true} component={ReactLogin}/>
-        </Switch>
-      </Router>
+        </header>
+
       </div>
     );
   }
@@ -88,6 +81,8 @@ class Employer extends React.Component{
 
 	render() {
 		return (
+            <div>
+            
 			<tr>
 				<td>
           {/* <a href={this.props.apiUrl}>
@@ -97,11 +92,14 @@ class Employer extends React.Component{
           {this.props.data.name}
           </td>
 				<td>{this.props.data.address}</td>
-        
+            
 			</tr>
+
+            
+            </div>
 		)
 	}
 }
 
-export default App;
+export default Home;
 

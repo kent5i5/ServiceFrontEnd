@@ -2,13 +2,15 @@ import logo from './logo.svg';
 import './App.css';
 import ReactLogin from './ReactLogin';
 import React, { Component, ReactDOM} from 'react';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
 import Home from './Home';
+import Chat from './Chat';
 var parser = require('mongo-parse');
 
 
 class App extends Component {
   state = {
+    isAuthenciated: false,
     isLoading: true,
     groups: [],
     firstname:"",
@@ -41,14 +43,15 @@ class App extends Component {
     
     const {groups, isLoading, firstname, lastname,address} = this.state;
 
-    if (isLoading) {
+    // if (isLoading) {
       
-      return (<div>{firstname} {lastname} {address}
-          <p>Loading...</p>
+    //   return (<div>{firstname} {lastname} {address}
+    //       <p>Loading...</p>
           
-          </div>
-      )
-    }
+    //       </div>
+    //   )
+    // }
+
     const employers = this.state.groups.map(account =>
 			<Employer Key={account._links.self.href} apiUrl={account._links.self.href} data={account}/>
 		);
@@ -65,11 +68,14 @@ class App extends Component {
          
         </header> */}
         
-        
+       
+
         <Router>
         <Switch>
-          <Route path='/' exact={true} component={Home}/>
-          <Route path='/user' exact={true} component={ReactLogin}/>
+          <Route path='/'exact={true}  >{this.state.isAuthenciated ? <Redirect to="/home" /> : <Redirect to="/user" />}</Route>
+          <Route path='/home' exact={true} component={ Home }/>
+          <Route path='/user' exact={true} component={ ReactLogin }/>
+          <Route path='/chat' exact={true} component={Chat}/>
         </Switch>
       </Router>
       </div>

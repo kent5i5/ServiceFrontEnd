@@ -16,6 +16,10 @@ class Home extends Component {
   };
 
   async componentDidMount() {
+    let formData = new FormData();
+        formData.append('username', "ana@ow.com");
+        formData.append('password',  "123456" )
+        const userdata = await fetch('/login', { formData} );
     
     // Proxy set to server Url
     const response = await fetch('/api/account/');
@@ -54,13 +58,13 @@ class Home extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {/* <img src={""} className="App-logo" alt="logo" /> */}
           <div className="App-intro">
             <h2>User List</h2>
            { <h3> {employers}</h3> }
           
           </div>
           <Link  to="/user">Login</Link>
+          <Link  to="/chat">Chat </Link>
 
          
         </header>

@@ -1,6 +1,9 @@
 import React, { Component, ReactDOM} from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import './App.css';
+import '../services/AccountServices';
+import AccountService from '../services/AccountServices';
+
+const API_URL = "/api"
 
 class Chat extends Component {
     state = {
@@ -12,6 +15,8 @@ class Chat extends Component {
     };
 
     async componentDidMount() {
+
+        //AccountService.getAccount()
     }
 
     // if (isLoading) {

@@ -12,13 +12,14 @@ class Home extends Component {
     groups: [],
     firstname:"",
     lastname:"",
-    addrsss:""
+    addrsss:"",
+    password: ""
   };
 
   async componentDidMount() {
     let formData = new FormData();
-        formData.append('username', "ana@ow.com");
-        formData.append('password',  "123456" )
+        formData.append('username', this.state.firstname);
+        formData.append('password',  this.state.password)
         const userdata = await fetch('/login', { formData} );
     
     // Proxy set to server Url

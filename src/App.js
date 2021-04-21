@@ -4,7 +4,9 @@ import ReactLogin from './ReactLogin';
 import React, { Component, ReactDOM} from 'react';
 import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
 import Home from './Home';
-import Chat from './Chat';
+import Chat from './components/Chat';
+
+import axios from 'axios'
 var parser = require('mongo-parse');
 
 
@@ -57,24 +59,23 @@ class App extends Component {
 		);
     return (
       <div className="App">
-        {/* <header className="App-header">
+        <header className="App-header">
           
           <div className="App-intro">
             
            { <h3> {employers}</h3> }
-          
+           <ReactLogin></ReactLogin>
           </div>
 
          
-        </header> */}
-        
-       
+        </header>
+
 
         <Router>
         <Switch>
-          <Route path='/'exact={true}  >{this.state.isAuthenciated ? <Redirect to="/home" /> : <Redirect to="/user" />}</Route>
+          <Route path='/'exact={true}  >{this.state.isAuthenciated ? <Redirect to="/home" /> : <Redirect to="/" />}</Route>
           <Route path='/home' exact={true} component={ Home }/>
-          <Route path='/user' exact={true} component={ ReactLogin }/>
+          {/* <Route path='/user' exact={true} component={ ReactLogin }/> */}
           <Route path='/chat' exact={true} component={Chat}/>
         </Switch>
       </Router>
